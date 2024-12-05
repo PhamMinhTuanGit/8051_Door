@@ -1,0 +1,179 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    12/05/2024  10:39:15  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE Z:\Desktop\MaNguonKhoaMoCua.obj TO Z:\Desktop\BaiTapLonViXuLy PRINT (.\Listings\BaiTapLonViX
+>> uLy.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  Z:\Desktop\MaNguonKhoaMoCua.obj (MANGUONKHOAMOCUA)
+
+
+LINK MAP OF MODULE:  Z:\Desktop\BaiTapLonViXuLy (MANGUONKHOAMOCUA)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     00BDH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  Z:\Desktop\BaiTapLonViXuLy (MANGUONKHOAMOCUA)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MANGUONKHOAMOCUA
+  D:00F0H         SYMBOL        B
+  C:0034H         SYMBOL        CHECK_1
+  C:0045H         SYMBOL        CHECK_2
+  C:0053H         SYMBOL        CHECK_3
+  C:0064H         SYMBOL        CHECK_4
+  C:0072H         SYMBOL        CHECK_5
+  C:0083H         SYMBOL        CHECK_6
+  C:00A1H         SYMBOL        CHECK_PASS
+  C:009EH         SYMBOL        CHECK_PIN
+  C:008EH         SYMBOL        CHINH_SO
+  C:009CH         SYMBOL        CHINH_SO_EXIT
+  C:000FH         SYMBOL        CLEAR_ALL_LEDS
+  C:00A9H         SYMBOL        DELAY_100MS
+  C:0094H         SYMBOL        INCREMENT
+  C:00ADH         SYMBOL        INNER_LOOP
+  B:00A0H.0       SYMBOL        LED1
+  B:00A0H.1       SYMBOL        LED2
+  B:00A0H.2       SYMBOL        LED3
+  B:00A0H.3       SYMBOL        LED4
+  B:00A0H.4       SYMBOL        LED5
+  B:00A0H.5       SYMBOL        LED6
+  C:00B3H         SYMBOL        LED_7DOAN
+  C:0009H         SYMBOL        MAIN
+  C:0025H         SYMBOL        MAIN_INCREMENT
+  C:001CH         SYMBOL        MAIN_LOOP
+  C:0030H         SYMBOL        MAIN_WAIT
+  C:00ABH         SYMBOL        OUTER_LOOP
+  D:0080H         SYMBOL        P0
+  D:0090H         SYMBOL        P1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  12/05/2024  10:39:15  PAGE 2
+
+
+  D:00A0H         SYMBOL        P2
+  C:0000H         SYMBOL        PIN
+  D:0099H         SYMBOL        SBUF
+  C:0000H         SYMBOL        START
+  B:0098H.1       SYMBOL        TI
+  C:00A1H         SYMBOL        UART_SEND
+  C:00A3H         SYMBOL        WAIT_TX
+  C:0000H         LINE#         16
+  C:0002H         LINE#         17
+  C:0005H         LINE#         18
+  C:0007H         LINE#         19
+  C:0009H         LINE#         22
+  C:000BH         LINE#         23
+  C:000DH         LINE#         24
+  C:000FH         LINE#         28
+  C:0011H         LINE#         29
+  C:0013H         LINE#         30
+  C:0015H         LINE#         31
+  C:0017H         LINE#         32
+  C:0019H         LINE#         33
+  C:001BH         LINE#         34
+  C:001CH         LINE#         38
+  C:001FH         LINE#         39
+  C:0021H         LINE#         40
+  C:0023H         LINE#         41
+  C:0025H         LINE#         44
+  C:0027H         LINE#         45
+  C:0029H         LINE#         46
+  C:002AH         LINE#         47
+  C:002DH         LINE#         48
+  C:002FH         LINE#         49
+  C:0030H         LINE#         52
+  C:0032H         LINE#         53
+  C:0033H         LINE#         54
+  C:0034H         LINE#         57
+  C:0037H         LINE#         58
+  C:003AH         LINE#         59
+  C:003CH         LINE#         60
+  C:003EH         LINE#         61
+  C:003FH         LINE#         62
+  C:0040H         LINE#         63
+  C:0042H         LINE#         64
+  C:0044H         LINE#         65
+  C:0045H         LINE#         68
+  C:0048H         LINE#         69
+  C:004AH         LINE#         70
+  C:004CH         LINE#         71
+  C:004DH         LINE#         72
+  C:004EH         LINE#         73
+  C:0050H         LINE#         74
+  C:0052H         LINE#         76
+  C:0053H         LINE#         79
+  C:0056H         LINE#         80
+  C:0058H         LINE#         81
+  C:005AH         LINE#         82
+  C:005BH         LINE#         83
+  C:005CH         LINE#         84
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  12/05/2024  10:39:15  PAGE 3
+
+
+  C:005FH         LINE#         85
+  C:0061H         LINE#         86
+  C:0063H         LINE#         87
+  C:0064H         LINE#         90
+  C:0067H         LINE#         91
+  C:0069H         LINE#         92
+  C:006BH         LINE#         93
+  C:006CH         LINE#         94
+  C:006DH         LINE#         95
+  C:006FH         LINE#         96
+  C:0071H         LINE#         97
+  C:0072H         LINE#         100
+  C:0075H         LINE#         101
+  C:0077H         LINE#         102
+  C:0079H         LINE#         103
+  C:007AH         LINE#         104
+  C:007BH         LINE#         105
+  C:007DH         LINE#         106
+  C:0080H         LINE#         107
+  C:0082H         LINE#         108
+  C:0083H         LINE#         111
+  C:0085H         LINE#         112
+  C:0087H         LINE#         113
+  C:0088H         LINE#         114
+  C:0089H         LINE#         115
+  C:008BH         LINE#         116
+  C:008DH         LINE#         117
+  C:008EH         LINE#         122
+  C:0091H         LINE#         123
+  C:0093H         LINE#         124
+  C:0094H         LINE#         127
+  C:0096H         LINE#         128
+  C:0097H         LINE#         129
+  C:009AH         LINE#         130
+  C:009CH         LINE#         133
+  C:009DH         LINE#         134
+  C:009EH         LINE#         137
+  C:00A1H         LINE#         142
+  C:00A3H         LINE#         144
+  C:00A6H         LINE#         145
+  C:00A8H         LINE#         146
+  C:00A9H         LINE#         152
+  C:00ABH         LINE#         154
+  C:00ADH         LINE#         156
+  C:00AEH         LINE#         157
+  C:00B0H         LINE#         158
+  C:00B2H         LINE#         159
+  -------         ENDMOD        MANGUONKHOAMOCUA
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00C4H BYTE ( 9%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=189
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

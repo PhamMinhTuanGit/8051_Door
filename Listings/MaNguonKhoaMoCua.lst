@@ -1,0 +1,228 @@
+A51 MACRO ASSEMBLER  MANGUONKHOAMOCUA                                                     12/05/2024 13:50:16 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE Z:\MaNguonKhoaMoCua.a51 SET(SMALL) DEBUG PRINT(.\Listings\MaNguonKhoaMo
+                      Cua.lst) OBJECT(Z:\Desktop\MaNguonKhoaMoCua.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ; Define LED pins
+  00A0                 2     LED1 BIT P2.0
+  00A1                 3     LED2 BIT P2.1
+  00A2                 4     LED3 BIT P2.2
+  00A3                 5     LED4 BIT P2.3
+  00A4                 6     LED5 BIT P2.4
+  00A5                 7     LED6 BIT P2.5
+0000 31323334          8     PIN: DB '123456', 00H
+0004 353600                  
+                       9     ; Define LED 7 segment display values
+                      10     
+                      11     
+                      12     
+0000                  13     ORG 00H
+                      14     
+0000                  15     START:
+0000 C2A6             16     CLR P2.6
+0002 D2A7             17     setb P2.7
+0004 7C00             18     mov R4, #0
+0006 9000B9           19     MOV DPTR, #LED_7DOAN       ; Ð?t con tr? d? li?u d?n b?ng LED_7DOAN
+0009 7800             20     MOV R0, #0                 ; Kh?i t?o giá tr? R0 là 0
+000B 7F01             21     MOV R7, #1                 ; Kh?i t?o giá tr? R7 là 1
+                      22     
+000D                  23     MAIN:
+000D 1120             24             ACALL main_loop 
+000F 80FC             25         SJMP MAIN
+                      26     
+                      27     ; Clear all LEDs before setting the required one
+0011                  28     clear_r4:
+0011 7C00             29             mov R4, #0
+0013                  30     clear_all_leds:
+0013 C2A0             31         CLR LED1
+0015 C2A1             32         CLR LED2
+0017 C2A2             33         CLR LED3
+0019 C2A3             34         CLR LED4
+001B C2A4             35         CLR LED5
+001D C2A5             36         CLR LED6
+001F 22               37         RET
+                      38     
+                      39     ; Main loop
+0020                  40     main_loop:
+0020 30970A           41         JNB P1.7, main_increment   ; Ki?m tra tr?ng thái P1.7, n?u 1 thì tang giá tr? R7
+0023 113C             42             ACALL check_1
+0025 11A6             43             ACALL check_pin
+0027 0C               44             inc r4
+0028 BC06E6           45             cjne r4, #6, clear_r4
+002B 80F3             46         SJMP main_loop            ; L?p l?i main_loop
+                      47     
+002D                  48     main_increment:
+002D 11AF             49         ACALL delay_100ms
+002F 7800             50             MOV R0, #0
+0031 0F               51             INC R7                    ; Tang giá tr? R7 
+0032 BF0703           52         CJNE R7, #7, main_wait    ; N?u R7 không ph?i 7 thì d?i
+0035 7F00             53         MOV R7, #0                ; N?u R7 là 7 thì reset v? 1
+0037 22               54         RET
+                      55     
+0038                  56     main_wait:
+A51 MACRO ASSEMBLER  MANGUONKHOAMOCUA                                                     12/05/2024 13:50:16 PAGE     2
+
+0038 11AF             57         ACALL delay_100ms
+003A 00               58             NOP
+003B 22               59         RET
+                      60     
+003C                  61     check_1:
+003C 9000B9           62         MOV DPTR, #LED_7DOAN
+003F BF010B           63         CJNE R7, #1, check_2      ; N?u R7 != 1, chuy?n d?n ki?m tra R7 = 2
+0042 1196             64         ACALL chinh_so
+0044 1113             65         ACALL clear_all_leds      ; Xóa t?t c? các LED
+0046 E8               66         MOV A, R0                ; L?y giá tr? hàng tram nghìn t? R0
+0047 93               67         MOVC A, @A+DPTR          ; L?y mã hi?n th? t? b?ng LED_7DOAN
+0048 D2A0             68         SETB LED1                ; B?t LED1
+004A F580             69             MOV P0, A                ; Xu?t mã hi?n th? ra c?ng P0 
+004C 22               70             RET
+                      71     
+004D                  72     check_2:
+004D BF020B           73         CJNE R7, #2, check_3      ; N?u R7 != 2, chuy?n d?n ki?m tra R7 = 3
+0050 1196             74         ACALL chinh_so
+0052 1113             75         ACALL clear_all_leds      ; Xóa t?t c? các LED
+0054 E8               76         MOV A, R0                ; L?y giá tr? hàng ch?c nghìn t? R0
+0055 93               77         MOVC A, @A+DPTR          ; L?y mã hi?n th? t? b?ng LED_7DOAN
+0056 D2A1             78         SETB LED2                ; B?t LED2
+0058 F580             79         MOV P0, A                ; Xu?t mã hi?n th? ra c?ng P0
+                      80         
+005A 22               81             RET
+                      82     
+005B                  83     check_3:
+005B BF030E           84             CJNE R7, #3, check_4      ; N?u R7 != 3, chuy?n d?n ki?m tra R7 = 4
+005E 1196             85         ACALL chinh_so
+0060 1113             86         ACALL clear_all_leds      ; Xóa t?t c? các LED
+0062 E8               87         MOV A, R0                ; L?y giá tr? hàng nghìn t? R0
+0063 93               88         MOVC A, @A+DPTR          ; L?y mã hi?n th? t? b?ng LED_7DOAN
+0064 75F00A           89         MOV B, #10
+0067 D2A2             90             SETB LED3                ; B?t LED3
+0069 F580             91         MOV P0, A                ; Xu?t mã hi?n th? ra c?ng P0
+006B 22               92             RET
+                      93     
+006C                  94     check_4:
+006C BF040B           95         CJNE R7, #4, check_5      ; N?u R7 != 4, chuy?n d?n ki?m tra R7 = 5
+006F 1196             96         ACALL chinh_so
+0071 1113             97         ACALL clear_all_leds      ; Xóa t?t c? các LED
+0073 E8               98         MOV A, R0                ; L?y giá tr? hàng tram t? R0
+0074 93               99         MOVC A, @A+DPTR          ; L?y mã hi?n th? t? b?ng LED_7DOAN
+0075 D2A3            100         SETB LED4                ; B?t LED4
+0077 F580            101             MOV P0, A                ; Xu?t mã hi?n th? ra c?ng P0
+0079 22              102             RET
+                     103     
+007A                 104     check_5:
+007A BF050E          105         CJNE R7, #5, check_6      ; N?u R7 != 5, chuy?n d?n ki?m tra R7 = 6
+007D 1196            106         ACALL chinh_so
+007F 1113            107         ACALL clear_all_leds      ; Xóa t?t c? các LED
+0081 E8              108         MOV A, R0                ; L?y giá tr? hàng ch?c t? R0
+0082 93              109         MOVC A, @A+DPTR          ; L?y mã hi?n th? t? b?ng LED_7DOAN
+0083 D2A4            110         SETB LED5                ; B?t LED5
+0085 75F00A          111         MOV B, #10
+0088 F580            112             MOV P0, A                ; Xu?t mã hi?n th? ra c?ng P0
+008A 22              113             RET
+                     114     
+008B                 115     check_6:
+008B 1196            116         ACALL chinh_so
+008D 1113            117         ACALL clear_all_leds      ; Xóa t?t c? các LED
+008F E8              118         MOV A, R0                ; L?y giá tr? hàng don v? t? R0
+0090 93              119         MOVC A, @A+DPTR          ; L?y mã hi?n th? t? b?ng LED_7DOAN
+0091 D2A5            120         SETB LED6                ; B?t LED6
+0093 F580            121         MOV P0, A                ; Xu?t mã hi?n th? ra c?ng P0
+0095 22              122             RET
+A51 MACRO ASSEMBLER  MANGUONKHOAMOCUA                                                     12/05/2024 13:50:16 PAGE     3
+
+                     123     
+                     124     ; Delay sau khi nh?n nút
+                     125     
+0096                 126     chinh_so:
+0096 309003          127         JNB P1.0, increment  ; Ki?m tra tr?ng thái P1.0
+0099 11AF            128         ACALL delay_100ms
+009B 22              129         RET
+                     130     
+009C                 131     increment:
+009C 11AF            132         ACALL delay_100ms
+009E 08              133             INC R0                   ; Tang giá tr? R0
+009F B80A02          134         CJNE R0, #10, chinh_so_exit  ; N?u R0 không ph?i 10 thì thoát
+00A2 7800            135         MOV R0, #0               ; N?u R0 là 10 thì reset v? 0
+                     136             
+00A4                 137     chinh_so_exit:
+00A4 00              138         NOP
+00A5 22              139         RET
+                     140     
+00A6                 141     check_pin:
+00A6 E8              142             MOV A, R0
+00A7 FB              143             MOV R3, A
+00A8 900000          144             MOV DPTR, #PIN
+00AB EC              145             mov A, R4
+00AC 93              146             MOVC A, @A+DPTR
+00AD                 147             CJNE A, R3, sai_pin
+*** _________________________________________^
+*** ERROR #A22 IN 147 (Z:\MaNguonKhoaMoCua.a51, LINE 147): EXPRESSION TYPE DOES NOT MATCH INSTRUCTION
+                     148             
+00AD                 149     sai_pin:
+00AD C2A7            150             CLR P2.7
+                     151     ; Delay 100ms
+00AF                 152     delay_100ms:
+00AF 7AFA            153         MOV R2, #250          ; Chu k? l?p ngoài d? t?o 0.1s
+00B1                 154     outer_loop:
+00B1 79FA            155         MOV R1, #250         ; Chu k? l?p bên trong
+00B3                 156     inner_loop:
+00B3 00              157         NOP                  ; No Operation (1 chu k? máy)
+00B4 D9FD            158         DJNZ R1, inner_loop
+00B6 DAF9            159         DJNZ R2, outer_loop
+00B8 22              160         RET    
+00B9 C0F9A4B0        161     LED_7DOAN: DB 0C0H, 0F9H, 0A4H, 0B0H, 099H, 092H, 082H, 0F8H, 080H, 090H
+00BD 999282F8                
+00C1 8090                    
+                     162     END
+A51 MACRO ASSEMBLER  MANGUONKHOAMOCUA                                                     12/05/2024 13:50:16 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CHECK_1. . . . . .  C ADDR   003CH   A   
+CHECK_2. . . . . .  C ADDR   004DH   A   
+CHECK_3. . . . . .  C ADDR   005BH   A   
+CHECK_4. . . . . .  C ADDR   006CH   A   
+CHECK_5. . . . . .  C ADDR   007AH   A   
+CHECK_6. . . . . .  C ADDR   008BH   A   
+CHECK_PIN. . . . .  C ADDR   00A6H   A   
+CHINH_SO . . . . .  C ADDR   0096H   A   
+CHINH_SO_EXIT. . .  C ADDR   00A4H   A   
+CLEAR_ALL_LEDS . .  C ADDR   0013H   A   
+CLEAR_R4 . . . . .  C ADDR   0011H   A   
+DELAY_100MS. . . .  C ADDR   00AFH   A   
+INCREMENT. . . . .  C ADDR   009CH   A   
+INNER_LOOP . . . .  C ADDR   00B3H   A   
+LED1 . . . . . . .  B ADDR   00A0H.0 A   
+LED2 . . . . . . .  B ADDR   00A0H.1 A   
+LED3 . . . . . . .  B ADDR   00A0H.2 A   
+LED4 . . . . . . .  B ADDR   00A0H.3 A   
+LED5 . . . . . . .  B ADDR   00A0H.4 A   
+LED6 . . . . . . .  B ADDR   00A0H.5 A   
+LED_7DOAN. . . . .  C ADDR   00B9H   A   
+MAIN . . . . . . .  C ADDR   000DH   A   
+MAIN_INCREMENT . .  C ADDR   002DH   A   
+MAIN_LOOP. . . . .  C ADDR   0020H   A   
+MAIN_WAIT. . . . .  C ADDR   0038H   A   
+OUTER_LOOP . . . .  C ADDR   00B1H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+PIN. . . . . . . .  C ADDR   0000H   A   
+SAI_PIN. . . . . .  C ADDR   00ADH   A   
+START. . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 1 ERROR(S)
